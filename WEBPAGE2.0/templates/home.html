@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ProteorhodopsinDB</title>
+       <link rel="stylesheet" href="{{ url_for('static',     filename='css/template.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icons/favicon.ico') }}"/>
+
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}"/>
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
+<!--===============================================================================================-->  
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css') }}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mainmain.css') }}">
+  </head>
+  <body>
+    <div class="limiter">
+    <div class="container-login100" style="background-image: url({{ url_for('static', filename='images/tara1.jpg') }})";>
+      <div class="wrap-login100 p-t-190 p-b-30">
+        <table border=0 align="center">
+          <tr>
+            <td colspan="4">
+            </td>
+          </tr>
+          <span class="login100-form-title p-t-20 p-b-45">
+            Proteorhodopsin DB
+          </span>
+            <form id="AccessionID" action="{{ url_for('AccessionID') }}" method="post" class="login100-form validate-form">
+                <tr>
+                  <td><b>ACCESSIONID&nbsp;</b></td>
+                  <td>Code:&nbsp;</td>
+                  <td><input type="text" name="code" id="code"></td>
+                  <td align=center><input type="submit" name="Search1" id="Search1" value="Search"></td>
+                </tr>
+            </form>
+                <tr><td colspan=4 height=5px></td></tr>
+
+              <form id= 'PUBMEDID' action="{{ url_for('PUBMEDID') }}" method="post" class="login100-form validate-form">
+                <tr>
+                  <td><b>PUBMEDID&nbsp;</b></td>
+                  <td>Code:&nbsp;</td>
+                  <td><input type="text" name="code" id="code"></td>
+                  <td align=center><input type="submit" name="Search2" id="Search2" value="Search"></td>
+                </tr>
+              </form> 
+                     <tr><td colspan=4 height=5px></td></tr>
+              <form id= 'METADATA' action = "{{ url_for('METADATA') }}" method = 'post' class = 'login100-form validate-form'>
+                <tr>
+                  <td colspan= 3><b>SEARCH BY METADATA&nbsp;</b></td>
+                  <td align = center><input type='submit' name='Search3' id = 'Search3' value = 'GO'></td>
+                  </tr>
+                </form> 
+                  <tr><td colspan = 4 height = 5px></td></tr>
+                <form id= 'BLAST' action = "{{ url_for('BLAST') }}" method = 'post' class = 'login100-form validate-form'>
+                <tr>
+                  <td colspan= 3><b>BLAST YOUR SEQUENCE&nbsp;</b></td>
+                  <td align = center><input type='submit' name='Search4' id = 'Search4' value = 'GO'></td>
+                  </tr>
+                </form>   
+        </table>
+        <tr> If code not in Database no results will be returned</tr>
+      </div>
+    </div>
+  </body>
+</html>
+

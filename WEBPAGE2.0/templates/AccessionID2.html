@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>About Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/template.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+  </head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<table id="example" class="display" style="width:100%">
+    <tbody>
+        <tr>
+        {% for val in value.columns.values %}
+            <td>{{val}}</td>
+        </tr>
+        {% endfor %}
+
+        <tr>
+         {% for valor in value.values %}
+        <td>{{valor}}</td>
+        {% endfor %}
+        </tr>
+
+    </tbody>
+</table>
+</body>
+    {% block content %}
+    {% endblock %}
+<script>
+    $(document).ready(function() { 
+    $('#example').DataTable( {
+        "scrollY": 200,
+        "scrollX": true
+    } );
+} );
+</script>
+</html>
