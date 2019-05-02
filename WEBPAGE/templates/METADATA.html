@@ -25,47 +25,102 @@
       <h4> Depth </h4>
       <select name="depth">
         <option value="0">ALL</option>
-        <option value="1">0-5m</option>
-        <option value="2">6-15m</option>
-        <option value="3">16-50m</option>
-        <option value="4">51-100</option>
-        <option value="5">101-200</option>
-        <option value="6">201-500</option>
-        <option value="7">501-1000</option>
-        <option value="8">+1000</option>
+        <option value="1">Upper Photic Layer(0-25m)</option>
+        <option value="2">Lower Photic Layer(25-200m)</option>
+        <option value="3">Mesopelagic(200-1000m)</option>
+        <option value="4">Bathypelagic(1000-4000m)</option>
       </select>
     </div>
+
     <div class="custom-select" style="width:200px;">
       <h4> Temperature </h4>
       <select name= "temperature">
         <option value="0">ALL</option>
         <option value="1">0-9C</option>
-        <option value="2">10-15C</option>
-        <option value="3">16-20C</option>
+        <option value="2">10-20C</option>
         <option value="4">21-25C</option>
-        <option value="5">25-30C</option>
+        <option value="5">26-30C</option>
         <option value="6">+30C</option>
+      </select>
+    </div>
+
+    <div class="custom-select" style="width:200px;">
+      <h4> Longhurst Province </h4>
+      <select name= "province">
+        <option value="0">ALL</option>
+        <option value="1">FKLD</option>
+        <option value="6">GUIA</option>
+        <option value="7">PNEC</option>
+        <option value="9">ARCT</option>
+        <option value="10">NASE/NAST-E</option>
+        <option value="14">CARB</option>
+        <option value="15">NAST-W</option>
+        <option value="16">SATL</option>
+        <option value="17">MEDI</option>
+        <option value="18">NATR</option>
+        <option value="19">GFST</option>
+        <option value="20">NADR</option>
+        <option value="21">BENG</option>
+        <option value="23">ISSG</option>
+        <option value="24">EAFR</option>
+        <option value="25">CAMR</option>
+        <option value="28">CCAL</option>
+        <option value="31">KURO</option>
+        <option value="37">AUSE</option>
+        <option value="38">PEOD/PEQD</option>
+        <option value="39">NPTG</option>
+        <option value="40">SPSG</option>
+        <option value="42">NPST/NPSW</option>
+        <option value="44">CHIN</option>
+        <option value="47">REDS</option>
+        <option value="50">MONS</option>
+        <option value="51">SSTC</option>
+        <option value="52">ARAB</option>
+        <option value="54">ANTA</option>
+        <option value="56">BPRL</option>
+        <option value="57">CHIL</option>
+      </select>
+    </div>
+
+    <div class="custom-select" style="width:200px;">
+      <h4> Lower Filter Size </h4>
+      <select name="filter">
+        <option value="0">ALL</option>
+        <option value="1">0.2/0.22µm</option>
+        <option value="2">0.4/0.45µm</option>
+        <option value="3">0.6µm</option>
+        <option value="4">0.8µm</option>
+      </select>
+    </div>
+    <div class="custom-select" style="width:200px;">
+      <h4> Upper Filter Size </h4>
+      <select name= "temperature">
+        <option value="0">ALL</option>
+        <option value="1">0.6µm</option>
+        <option value="2">0.8µm</option>
+        <option value="4">1.6µm</option>
+        <option value="5">2µm</option>
+        <option value="6">3µm</option>
+        <option value="7">5µm</option>   
       </select>
     </div>
     <div class="custom-select" style="width:200px;">
       <h4> Geography </h4>
       <select name= "geography">
         <option value="0">ALL</option>
-        <option value="1">0-5m</option>
-        <option value="2">6-15m</option>
-        <option value="3">16-50m</option>
-        <option value="4">51-100</option>
-        <option value="5">101-200</option>
-        <option value="6">201-500</option>
-        <option value="7">501-1000</option>
-        <option value="8">1001-5000</option>
+        <option value="1">Atlantic</option>
+        <option value="2">Pacific</option>
+        <option value="3">Indian</option>
+        <option value="4">Antarctic</option>
+        <option value="5">Arctic</option>
       </select>
-      <div>
-    </div>
     </div>
   </div>
   <button type="submit" class="btn btn-default">Go</button>
 </div>
+</form>
+
+
 <script type="text/javascript" src="../static/js/select.js"></script>
 </body>
 </html>

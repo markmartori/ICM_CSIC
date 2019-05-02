@@ -1,39 +1,9 @@
-/* includes alternating gray and white with on-hover color */
-
-.mystyle {
-    font-size: 11pt; 
-    font-family: Arial;
-    border-collapse: collapse; 
-    border: 1px solid silver;
-
-}
-
-.mystyle td, th {
-    padding: 5px;
-}
-
-.mystyle tr:nth-child(even) {
-    background: #E0E0E0;
-}
-.mystyle tr:nth-child(odd) {
-	background: #f2f2f2;
-}
-
-
-.mystyle tr:hover {
-    background: silver;
-    cursor: pointer;
-}
-
-
-
 /*###################################################*/
 /* ############### SELECT ######################### */
 
 /* The container must be positioned relative: */
 .custom-select {
   position: relative;
-  left: 70px;
   font-family: Arial;
 }
 

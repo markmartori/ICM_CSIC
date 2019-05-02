@@ -126,59 +126,60 @@ def METADATA():
 
 @app.route("/RESULTS", methods=['GET', 'POST'])
 def RESULTS():
+    
+    sdepth = request.form.get('depth') # El valor del select respecto a depth.
+    stemp = request.form.get('temperature') # Respecto a temperature.
+    sprovince = request.form.get('province') # Respecto a province.
+    sgeo = request.form.get('geography')
 
-    sdepth = request.form.get('depth')
-    stemp = request.form.get('temperature')
 
-    if sdepth == '1':
-        depthmin='0'
-        depthmax='5'
-    elif sdepth == '2':
-        depthmin='6'
-        depthmax='15'
-    elif sdepth == '3':
-        depthmin='16'
-        depthmax='50'
-    elif sdepth == '4':
-        depthmin='51'
-        depthmax='100'
-    elif sdepth == '5':
-        depthmin='101'
-        depthmax='200'
-    elif sdepth == '6':
-        depthmin='201'
-        depthmax='500'
-    elif sdepth == '7':
-        depthmin='501'
-        depthmax='1000'
-    elif sdepth == '8':
-        depthmin='1001'
-        depthmax='9999'
-    else:
-        depthmin='0'
-        depthmax='9999'
-	
+    sql = "(SELECT GENE.GeneID, GENE.Domain, GENE.Sequencefasta, GENE.PUBMEDID PUBMED_SAMPLE, GENE_PUBMED.GEOGRAPHY, GENE_PUBMED.LATITUDE, GENE_PUBMED.LONGITUDE, GENE_PUBMED.TEMPERATURE, GENE_PUBMED.POSITION_105, GENE_PUBMED.DEPTH, ' ' O2, GENE_PUBMED.LOW_FILTER, GENE_PUBMED.UPPER_FILTER FROM GENE, GENE_PUBMED WHERE GENE.GeneID = GENE_PUBMED.GeneID
+    
+###################### DEPTH
+    if sdepth != '0':
+        if sdepth == '1':
+            depthmin='0'
+            depthmax='25'
+        elif sdepth == '2':
+            depthmin='25'
+            depthmax='200'
+        elif sdepth == '3':
+            depthmin='200'
+            depthmax='1000'
+        elif sdepth=='4':
+            depthmin:'1000'
+            depthmax:'4000'
+        sql1 += sql1 + "AND GENE_PUBMED.DEPTH >= '"+depthmin+"' AND GENE_PUBMED.DEPTH <= '"+depthmax+"'"
+        sql2 += sql2 + "AND SAMPLE.DEPTH >= '"+depthmin+"' AND SAMPLE.DEPTH <= '"+depthmax+"'"
+
+
+###################### TEMPERATURE	
     if stemp == '1':
         tempmin='0'
         tempmax='9'
-
     elif stemp == '2':
-        tempmin=''
-        tempmax=''
-    elif stemp == '2':
-        tempmin=''
-        tempmax=''
-    elif stemp == '2':
-        tempmin=''
-        tempmax=''
-    elif stemp == '2':
-        tempmin=''
-        tempmax=''
+        tempmin='10'
+        tempmax='20'
+    elif stemp == '3':
+        tempmin='21'
+        tempmax='26'
+    elif stemp == '4':
+        tempmin='26'
+        tempmax='30'
+    elif stemp == '5':
+        tempmin='30'
+        tempmax='999'
     else:
-        tempmin=''
-        tempmax=''
+        tempmin='0'
+        tempmax='999'
 
-    cursor.execute("(SELECT GENE.GeneID, GENE.Domain, GENE.Sequencefasta, GENE.PUBMEDID PUBMED_SAMPLE, GENE_PUBMED.GEOGRAPHY, GENE_PUBMED.LATITUDE, GENE_PUBMED.LONGITUDE, GENE_PUBMED.TEMPERATURE, GENE_PUBMED.POSITION_105, GENE_PUBMED.DEPTH, ' ' O2, GENE_PUBMED.LOW_FILTER, GENE_PUBMED.UPPER_FILTER FROM GENE, GENE_PUBMED WHERE GENE.GeneID = GENE_PUBMED.GeneID AND GENE_PUBMED.TEMPERATURE >= '"+tempmin+"' AND GENE_PUBMED.TEMPERATURE <= '"+tempmax+"' AND GENE_PUBMED.DEPTH >= '"+depthmin+"' AND GENE_PUBMED.DEPTH <= '"+depthmax+"')UNION(SELECT GENE_SAMPLE.GeneID , GENE.Domain, GENE.Sequencefasta, SAMPLE.SAMPLEID, SAMPLE.Province Geography, SAMPLE.LATITUDE, SAMPLE.LONGITUDE, SAMPLE.TEMPERATURE, ' ' POSITION_105,SAMPLE.DEPTH, SAMPLE.O2, SAMPLE.LOW_FILTER, SAMPLE.UPPER_FILTER FROM GENE, GENE_SAMPLE, SAMPLE WHERE GENE.GeneID = GENE_SAMPLE.GeneID AND GENE_SAMPLE.SAMPLEID = SAMPLE.SAMPLEID AND SAMPLE.TEMPERATURE >= '"+tempmin+"' AND SAMPLE.TEMPERATURE <= '"+tempmax+"' AND SAMPLE.DEPTH >= '"+depthmin+"' AND SAMPLE.DEPTH <= '"+depthmax+"')")
+###################### PROVINCE
+### The value obtained is already the province num, therefore, not 'IF' is needed.
+
+##################### GEOGRAPHY
+        
+
+    cursor.execute("(SELECT GENE.GeneID, GENE.Domain, GENE.Sequencefasta, GENE.PUBMEDID PUBMED_SAMPLE, GENE_PUBMED.GEOGRAPHY, GENE_PUBMED.LATITUDE, GENE_PUBMED.LONGITUDE, GENE_PUBMED.TEMPERATURE, GENE_PUBMED.POSITION_105, GENE_PUBMED.DEPTH, ' ' O2, GENE_PUBMED.LOW_FILTER, GENE_PUBMED.UPPER_FILTER FROM GENE, GENE_PUBMED WHERE GENE.GeneID = GENE_PUBMED.GeneID AND GENE_PUBMED.TEMPERATURE >= '"+tempmin+"' AND GENE_PUBMED.TEMPERATURE <= '"+tempmax+"' AND GENE_PUBMED.DEPTH >= '"+depthmin+"' AND GENE_PUBMED.DEPTH <= '"+depthmax+"' AND GENE_PUBMED.NUM_PROVINCE = '"+sprovince+"')UNION(SELECT DISTINCT(GENE_SAMPLE.GeneID) , GENE.Domain, GENE.Sequencefasta, SAMPLE.SAMPLEID, SAMPLE.Province Geography, SAMPLE.LATITUDE, SAMPLE.LONGITUDE, SAMPLE.TEMPERATURE, ' ' POSITION_105,SAMPLE.DEPTH, SAMPLE.O2, SAMPLE.LOW_FILTER, SAMPLE.UPPER_FILTER FROM GENE, GENE_SAMPLE, SAMPLE WHERE GENE.GeneID = GENE_SAMPLE.GeneID AND GENE_SAMPLE.SAMPLEID = SAMPLE.SAMPLEID AND SAMPLE.TEMPERATURE >= '"+tempmin+"' AND SAMPLE.TEMPERATURE <= '"+tempmax+"' AND SAMPLE.DEPTH >= '"+depthmin+"' AND SAMPLE.DEPTH <= '"+depthmax+"' AND SAMPLE.NUM_PROVINCE = '"+sprovince+"')")
     sql1=cursor.fetchall()
     datadict=sql1[0]
     colnames = datadict.keys()
@@ -193,8 +194,6 @@ def RESULTS():
 
 
 
-
-#"(SELECT GENE.GeneID, GENE.Domain, GENE.Sequencefasta, GENE.PUBMEDID PUBMED_SAMPLE, GENE_PUBMED.GEOGRAPHY, GENE_PUBMED.LATITUDE, GENE_PUBMED.LONGITUDE, GENE_PUBMED.TEMPERATURE, GENE_PUBMED.POSITION_105, GENE_PUBMED.DEPTH, ' ' O2, GENE_PUBMED.LOW_FILTER, GENE_PUBMED.UPPER_FILTER FROM GENE, GENE_PUBMED WHERE GENE.GeneID = GENE_PUBMED.GeneID AND GENE_PUBMED.DEPTH <6)UNION (SELECT GENE_SAMPLE.GeneID , GENE.Domain, GENE.Sequencefasta, SAMPLE.SAMPLEID, SAMPLE.Province Geography, SAMPLE.LATITUDE, SAMPLE.LONGITUDE, SAMPLE.TEMPERATURE, ' ' POSITION_105,SAMPLE.DEPTH, SAMPLE.O2, SAMPLE.LOW_FILTER, SAMPLE.UPPER_FILTER FROM GENE, GENE_SAMPLE, SAMPLE WHERE GENE.GeneID = GENE_SAMPLE.GeneID AND GENE_SAMPLE.SAMPLEID = SAMPLE.SAMPLEID AND SAMPLE.DEPTH<6)"
 
 
 
