@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METADATA</title>
+    <link href="../static/css/df_style.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/main.css" rel="stylesheet" type="text/css">
+    <!-- Main style sheet -->
+  </head>
+
+<!-- Advance Search -->
+<!--   <header class="container-login1000" style="background-image: url({{ url_for('static', filename='images/tara_head.jpg') }})";>
+  <h1>METADATA</h1>
+    <h2>Choose your parameters</h2>
+  </header> -->
+
+<body background="../static/images/a.jpg">
+  <h1>METADATA</h1>
+    <h2>Choose the parameters</h2>
+    <tr>&nbsp;</tr>
+    <form method= "POST" action= "{{ url_for('RESULTS') }}">
+    <div class="limiter">
+    <div class="custom-select" style="width:200px;">
+      <h4> Depth </h4>
+      <select name="depth">
+        <option value="0">ALL</option>
+        <option value="1">0-5m</option>
+        <option value="2">6-15m</option>
+        <option value="3">16-50m</option>
+        <option value="4">51-100</option>
+        <option value="5">101-200</option>
+        <option value="6">201-500</option>
+        <option value="7">501-1000</option>
+        <option value="8">+1000</option>
+      </select>
+    </div>
+    <div class="custom-select" style="width:200px;">
+      <h4> Temperature </h4>
+      <select name= "temperature">
+        <option value="0">ALL</option>
+        <option value="1">0-9C</option>
+        <option value="2">10-15C</option>
+        <option value="3">16-20C</option>
+        <option value="4">21-25C</option>
+        <option value="5">25-30C</option>
+        <option value="6">+30C</option>
+      </select>
+    </div>
+    <div class="custom-select" style="width:200px;">
+      <h4> Geography </h4>
+      <select name= "geography">
+        <option value="0">ALL</option>
+        <option value="1">0-5m</option>
+        <option value="2">6-15m</option>
+        <option value="3">16-50m</option>
+        <option value="4">51-100</option>
+        <option value="5">101-200</option>
+        <option value="6">201-500</option>
+        <option value="7">501-1000</option>
+        <option value="8">1001-5000</option>
+      </select>
+      <div>
+    </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-default">Go</button>
+</div>
+<script type="text/javascript" src="../static/js/select.js"></script>
+</body>
+</html>
+  <!-- / Advance Search -->
