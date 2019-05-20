@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ACCESSIONID</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/RESULTS.css"/>
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/> -->
+  </head>
+<body background="../static/images/AccessionID.jpg">
+<h2>Accession ID Metadata</h2>
+<table id="example" class="display" style="width:100%">
+    <body>
+    {% for table in tables %}
+            {{ table|safe }}
+    {% endfor %}
+
+</table>
+    {% block content %}
+    {% endblock %}
+    </body>
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() { 
+    $('#example').DataTable( {
+    } );
+} );
+</script>
+</html>

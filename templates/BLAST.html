@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METADATA</title>
+</head>
+<body background="../static/images/BLAST2.jpg">
+      <form method= "POST" action= "{{ url_for('RESULTS') }}">
+         <h2>Insert your query so we can blast it!</h2>
+         <tr>
+        <select name="depth">
+        <option value="0">NUCL/AA</option>
+        <option value="1">NUCLEOTIDES</option>
+        <option value="2">AMINO ACIDS</option>
+      	</select>
+        </tr>
+         <br>
+         <textarea type="text" rows = "5" cols = "60" name = "blastcode" id="blastcode">
+         </textarea><br>
+         <input type = "submit" name="BLAST" id="BLAST" value = "BLAST" />
+      </form>
+   </body>
+</html>

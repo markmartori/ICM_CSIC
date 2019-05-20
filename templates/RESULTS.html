@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METADATARESULTS</title>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    .btn {
+      background-color: DodgerBlue;
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 14px;
+  }
+
+    /* Darker background on mouse-over */
+    .btn:hover {
+      background-color: RoyalBlue;
+  }
+    </style>
+
+    <link href="../static/css/RESULTS.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/main.css" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <!-- Main style sheet -->
+  </head>
+
+
+<body background="../static/images/a.jpg">
+  <h1>METADATA RESULTS</h1>
+     <form method= "POST" action= "{{ url_for('FASTA') }}">
+      <h4> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <select name="fasta">
+        <option value="0">NUCLEOTIDES</option>
+        <option value="1">AMINO ACIDS</option>
+      </select>
+        <button class="btn"><i class="fa fa-download"></i> Download</button></h4>
+
+    </form>
+
+  
+<table id="tabla" class="display" style="width:100%">
+    <tbody >
+    {% for table in tables %}
+            {{ table|safe }}
+    {% endfor %}
+</tbody>
+</table>
+    {% block content %}
+    {% endblock %}
+
+<script>
+    $(document).ready(function() { 
+    $('#tabla').DataTable( {
+        "scrollY": 200,
+        "scrollX": true
+    } );
+} );
+
+</script>
+</html>
